@@ -17,6 +17,9 @@ class UserService{
             const user = await this.userRepository.create(data);
             return user;
         } catch (error) {
+            if(error.name == 'ValidationError'){
+                throw error;
+            }
             console.log('Something went wrong in the service layer');
             throw error;
         }
